@@ -1,118 +1,45 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// App.js
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SplashScreen from 'react-native-splash-screen';
+import SignInScreen from './src/Screens/SignInScreen';
+import SignOutScreen from './src/Screens/SignOutScreen';
+import StoreHomeScreen from './src/Screens/StoreHomeScreen';
+import OderDetailsScreen from './src/Screens/OderDetailsScreen';
+import Store from './src/app/Store';
+import ITCCempakaMasPage from './src/Screens/ITCCempakaMasPage';
+import MallOfIndonesiaPage from './src/Screens/MallOfIndonesiaPage';
+import MallArthaGadingPage from './src/Screens/MallArthaGadingPage';
+import CartScreen from './src/Screens/CartScreen';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const Stack = createNativeStackNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const MyHomeStack = () => (
+  <Stack.Navigator initialRouteName="STOREHOMESCREEN" screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="SIGNIN" component={SignInScreen} />
+    <Stack.Screen name="HOMESCREEN" component={StoreHomeScreen} />
+    <Stack.Screen name="STOREHOMESCREEN" component={StoreHomeScreen} />
+    <Stack.Screen name="CARTSCREEN" component={CartScreen} />
+    <Stack.Screen name="PRODUCTS_DETAIL" component={OderDetailsScreen} />
+    <Stack.Screen name="SIGNOUT" component={SignOutScreen} />
+    <Stack.Screen name="MallOfIndonesia" component={MallOfIndonesiaPage} />
+    <Stack.Screen name="MallArthaGading" component={MallArthaGadingPage} />
+    <Stack.Screen name="ITCCempakaMas" component={ITCCempakaMasPage} />
+  </Stack.Navigator>
+);
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const App = () => {
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={Store}>
+      <NavigationContainer>
+        <MyHomeStack />
+      </NavigationContainer>
+    </Provider>
   );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
 
 export default App;

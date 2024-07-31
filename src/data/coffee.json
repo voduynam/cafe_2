@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "title": "Americano",
+        "price": "12",
+        "image": "https://file.hstatic.net/200000079049/file/americano-1_6b32372e76b84139a0b4935c96d49d05.jpeg"
+    },
+    {
+        "id": 2,
+        "title": "Coffee Latte",
+        "price": "45",
+        "image": "https://www.acouplecooks.com/wp-content/uploads/2021/05/Latte-Art-070.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Coffee Milo",
+        "price": "34",
+        "image": "https://i0.wp.com/www.etfoodvoyage.com/wp-content/uploads/2022/07/rsz_drinks_-_iced_milo_latte_2.jpg?resize=1024%2C682&ssl=1"
+    },
+    {
+        "id": 4,
+        "title": "Aren Latte",
+        "price": "23",
+        "image": "https://flash-coffee.com/id/wp-content/uploads/sites/13/2023/06/LATTE-GULA-AREN-600x375.png"
+    },
+    {
+        "id": 5,
+        "title": "Chocolate",
+        "price": "5",
+        "image": "https://imaxhouse.co.nz/wp-content/uploads/2021/11/iced-Chocolate-400x400.png"
+    },
+    {
+        "id": 6,
+        "title": "Thai Milk Milo",
+        "price": "43",
+        "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1i1ZjpUVH-lPGqf1rt3vezDNpA2r4QJPHc8N4LWkrMQJbzfr7H2Mvzk5sPh1CbNaAYdxPosV6dzxQbT4iqizH5FYLNMnI9bF2aBp4fsV1PklIyDZmnQYNE5FQXKry32mnIF19lKtmJ2iP/s1600/milk+tea+bubble+tea.jpeg"
+    },
+    {
+        "id": 7,
+        "title": "Matcha Green Tea",
+        "price": "34",
+        "image": "https://greenheartlove.com/wp-content/uploads/2023/05/matcha-boba-tea.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Boba Brown Sugar Milk Tea",
+        "price": "123",
+        "image": "https://takestwoeggs.com/wp-content/uploads/2021/04/Brown-Sugar-Milk-Tea-Boba-Recipe-Takestwoeggs-Easy-Asian-Inspired-Recipes-sq.jpg"
+    },
+    {
+        "id": 9,
+        "title": "Cireng",
+        "price": "32",
+        "image": "https://natashaskitchen.com/wp-content/uploads/2019/04/Cream-Puffs-4-768x1152.jpg"
+    },
+    {
+        "id": 10,
+        "title": "Cream Puff",
+        "price": "23",
+        "image": "https://natashaskitchen.com/wp-content/uploads/2019/04/Cream-Puffs-4-768x1152.jpg"
+    },
+    {
+        "id": 11,
+        "title": "Fried Banana",
+        "price": "30",
+        "image": "https://sweetsimplevegan.com/wp-content/uploads/2021/03/filipino-Banana-Cue-sweet-simple-vegan.jpg"
+    },
+    {
+        "id": 12,
+        "title": "Basreng",
+        "price": "30",
+        "image": "ghttps://feedgrump.com/wp-content/uploads/2023/05/banana-katsu-plating-1.jpg"
+    }
+]

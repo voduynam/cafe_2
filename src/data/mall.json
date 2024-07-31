@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "Mall Of Indonesia",
+      "openHours": "10 AM-9 PM",
+      "address": "JL Boulevard Barat Raya No. 27, RT.18/RW.19, Kb. Gading Bar., Kec. Klp. Gading, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14240",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeWMzsULWK61q9AKhJlXlQDx-g-BMY6yfGng&s"
+    },
+    {
+      "id": 2,
+      "name": "Mall Artha Gading",
+      "openHours": "10 AM-10 PM",
+      "address": "JL. Artha Gading Sel. No.1, RT.18/RW.8, Klp. Gading Bar., Kec. Klp. Gading, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14240",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Lobby_China_Mal_Artha_Gading.jpg"
+    },
+    {
+      "id":3,
+      "name": "ITC Cempaka Mas",
+      "openHours": "10 AM-9 PM",
+      "address": "JL. Letjen Suprapto No.1, RW.8, Sumur Batu, Kec. Kemayoran, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10640",
+      "imageUrl": "https://kfmap.asia/storage/thumbs/storage/photos/ID.JKT.RT.CM1/ID.JKT.RT.CM1_1.png"
+    }
+  ]
