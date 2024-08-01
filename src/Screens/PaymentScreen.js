@@ -3,6 +3,8 @@ import { Button, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, Vie
 import Header from '../components/Header'
 import { useSelector } from 'react-redux'
 import AntDesign from "react-native-vector-icons/AntDesign"
+import { setPaymentMethod } from '../slices/paymentSlice';
+
 
 const PaymentScreen = () => {
   const cartItems = useSelector((state) => state.cart.items)
@@ -40,9 +42,6 @@ const PaymentScreen = () => {
       <View style={{ height: 1, backgroundColor: "black", marginTop: 5 }} />
 
     </View>
-
-
-
   )
 
   return (
@@ -58,75 +57,75 @@ const PaymentScreen = () => {
           ListEmptyComponent={<Text style={styles.emptyText}>Your cart is empty</Text>}
           ListFooterComponent={
             <View>
-            <View style={styles.containersubTotal}>
-              <Text style={styles.TextSub}>Subtotal:</Text>
-              <Text style={styles.TexttotalPrice}>{totalPrice}$</Text>
-            </View>
-            
+              <View style={styles.containersubTotal}>
+                <Text style={styles.TextSub}>Subtotal:</Text>
+                <Text style={styles.TexttotalPrice}>{totalPrice}$</Text>
+              </View>
+
             </View>
           }
         />
-<View style={styles.contaienrPay}>
-        <View>
-          <Text style={styles.textPayMentMethod}>Payment Details : </Text>
-          <TouchableOpacity style={styles.modalOption} onPress={()=>setModalVisible(true)} >
-                <Image source={require("../asset/Ovo.png")} style={styles.imgOvo} />
-                <Text style={styles.textPay}>OVO</Text>
-               
-              </TouchableOpacity>
-        </View>
-        <Modal
-          visible={isModalVisible}
-          transparent={true}
-          animationType="fade"
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <View style={styles.headerPaymenMethod}>
-                <TouchableOpacity onPress={() => setModalVisible(false)} >
-                  <AntDesign name="close"  color="black" size={32} />
-                </TouchableOpacity>
-                
-                <Text style={styles.modalTitle}>Payment Method</Text>
-              </View>
-              <View style={{height:1, backgroundColor:"black"}}/>
-              <TouchableOpacity style={styles.modalOption} >
-                <Image source={require("../asset/Ovo.png")} style={styles.imgOvo} />
-                <Text style={styles.textPay}>OVO</Text>
-               
-              </TouchableOpacity>
-              <View style={{height:1, backgroundColor:"black"}}/>
-              <TouchableOpacity style={styles.modalOption}>
-                <Image source={require("../asset/LinkAja.png")} style={styles.imgOvo} />
-                <Text style={styles.textPay}>LinkAja</Text>
-                
-              </TouchableOpacity>
-              <View style={{height:1, backgroundColor:"black"}}/>
-              <TouchableOpacity style={styles.modalOption} >
-                <Image source={require("../asset/Dana.png")} style={styles.imgOvo} />
-                <Text style={styles.textPay}>Dana</Text>
-          
-              </TouchableOpacity>
-              <View style={{height:1, backgroundColor:"black"}}/>
-              <TouchableOpacity style={styles.modalOption} >
-                <Image source={require("../asset/Flip.png")} style={styles.imgOvo} />
-                <Text style={styles.textPay}>Flip</Text>
-                
-              </TouchableOpacity>
-              <View style={{height:1, backgroundColor:"black"}}/>
-              <TouchableOpacity style={styles.modalOption} >
-                <Image source={require("../asset/Cash.png")} style={styles.imgOvo} />
-                <Text style={styles.textPay}>Cash</Text>
-              </TouchableOpacity>
-              
+        <View style={styles.contaienrPay}>
+          <View style={styles.containerPAy}>
+            <Text style={styles.textPayMentMethod}>Payment Details : </Text>
+            <TouchableOpacity style={styles.paydefault} onPress={() => setModalVisible(true)} >
+              <Image source={require("../asset/Ovo.png")} style={styles.imgOvo} />
+              <Text style={styles.textPay}>OVO</Text>
 
-            </View>
+            </TouchableOpacity>
           </View>
-        </Modal>
+          <Modal
+            visible={isModalVisible}
+            transparent={true}
+            animationType="fade"
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <View style={styles.headerPaymenMethod}>
+                  <TouchableOpacity onPress={() => setModalVisible(false)} >
+                    <AntDesign name="close" color="black" size={32} />
+                  </TouchableOpacity>
+
+                  <Text style={styles.modalTitle}>Payment Method</Text>
+                </View>
+                <View style={{ height: 1, backgroundColor: "black" }} />
+                <TouchableOpacity style={styles.modalOption} >
+                  <Image source={require("../asset/Ovo.png")} style={styles.imgOvo} />
+                  <Text style={styles.textPay}>OVO</Text>
+
+                </TouchableOpacity>
+                <View style={{ height: 1, backgroundColor: "black" }} />
+                <TouchableOpacity style={styles.modalOption}>
+                  <Image source={require("../asset/LinkAja.png")} style={styles.imgOvo} />
+                  <Text style={styles.textPay}>LinkAja</Text>
+
+                </TouchableOpacity>
+                <View style={{ height: 1, backgroundColor: "black" }} />
+                <TouchableOpacity style={styles.modalOption} >
+                  <Image source={require("../asset/Dana.png")} style={styles.imgOvo} />
+                  <Text style={styles.textPay}>Dana</Text>
+
+                </TouchableOpacity>
+                <View style={{ height: 1, backgroundColor: "black" }} />
+                <TouchableOpacity style={styles.modalOption} >
+                  <Image source={require("../asset/Flip.png")} style={styles.imgOvo} />
+                  <Text style={styles.textPay}>Flip</Text>
+
+                </TouchableOpacity>
+                <View style={{ height: 1, backgroundColor: "black" }} />
+                <TouchableOpacity style={styles.modalOption} >
+                  <Image source={require("../asset/Cash.png")} style={styles.imgOvo} />
+                  <Text style={styles.textPay}>Cash</Text>
+                </TouchableOpacity>
+
+
+              </View>
+            </View>
+          </Modal>
+        </View>
       </View>
-      </View>
-      
+          
     </View>
   )
 }
@@ -145,8 +144,8 @@ const styles = StyleSheet.create({
   bodyContainer: {
     width: "100%",
     backgroundColor: '#DDDDDD',
-    marginVertical: 26,
-    height:"100%"
+    marginVertical: 10,
+    height: 500
 
   },
   titleContainer: {
@@ -213,7 +212,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10
+    marginBottom: 10,
+   
   },
   TextSub: {
     fontSize: 18,
@@ -229,12 +229,13 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   contaienrPay: {
-    width: "100%",
-    backgroundColor: '#DDDDDD',
+    
+    backgroundColor: 'white',
+    marginTop:50
 
   },
   modalContainer: {
- 
+
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -245,13 +246,13 @@ const styles = StyleSheet.create({
   imgOvo: {
     height: 48,
     width: 48,
-    marginHorizontal:3
+    marginHorizontal: 3
   },
-  textPay:{
-    fontSize:20,
-    color:"#0E0C08",
-    fontWeight:"400",
-    marginLeft:5
+  textPay: {
+    fontSize: 20,
+    color: "#0E0C08",
+    fontWeight: "400",
+    marginLeft: 5
   },
   modalContent: {
     backgroundColor: "white",
@@ -266,24 +267,32 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: "black",
     fontWeight: "600",
-    flex:1
+    flex: 1
 
   },
-  modalOption:{
-    flexDirection:"row",
-    height:50,
-    alignItems:"center"
-    
-    
-  },
-  headerPaymenMethod:{
-    height:50,
-    flexDirection:"row",
-    alignItems:"center",
-    
-  },
-  payButton:{
+  modalOption: {
+    flexDirection: "row",
+    height: 50,
+    alignItems: "center"
 
+
+  },
+  headerPaymenMethod: {
+    height: 50,
+    flexDirection: "row",
+    alignItems: "center",
+
+  },
+ 
+  containerPAy:{
+    marginTop:20
+  },
+  paydefault:{
+    flexDirection: "row",
+    height: 50,
+    alignItems: "center",
+    marginLeft:20,
+    marginVertical:20
   }
 
 })
