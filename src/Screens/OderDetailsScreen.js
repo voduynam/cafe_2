@@ -3,9 +3,6 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/cartSlice'; 
-
-
-
 const OrderDetailsScreen = ({ route, navigation }) => {
   const { item } = route.params;
   const [selectedSize, setSelectedSize] = useState("L");
@@ -39,7 +36,7 @@ const OrderDetailsScreen = ({ route, navigation }) => {
       quantity: 1,
       totalPrice: item.price,
     };
-    dispatch(addToCart(cartItem)); 
+    dispatch(addToCart(cartItem)); // Dispatch addToCart action
     navigation.navigate('CARTSCREEN');
   };
 

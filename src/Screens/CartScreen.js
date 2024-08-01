@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { decrementQuantity, incrementQuantity, removeFromCart } from '../redux/cartSlice';
+import { addToCart, decrementQuantity, incrementQuantity, removeFromCart } from '../redux/cartSlice';
 import Header from '../components/Header';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
+
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -25,6 +26,7 @@ const CartScreen = () => {
   };
 
   const handleOrder = () => {
+ 
     navigation.navigate("CHECKTOTALPRODUCTDETAIL");
   };
 
@@ -33,7 +35,7 @@ const CartScreen = () => {
       <Image source={{ uri: item.image }} style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.info}>Size: {item.size}</Text>
+        <Text style={styles.info}> Size: {item.size === "S" ? "Small" : item.size === "M" ? "Medium" : item.size === "L" ? "Big" :''}</Text>
         <Text style={styles.info}>Status: {item.hot === 'yes' ? 'Hot' : 'Cold'}</Text>
         <TouchableOpacity onPress={() => handleRemoveFromCart(item)} style={styles.removeButton}>
           <Text style={styles.removeButtonText}>Remove</Text>
