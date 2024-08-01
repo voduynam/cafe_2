@@ -7,22 +7,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 
-// Remove TypeScript types
 const CartScreen = () => {
   const navigation = useNavigation();
-  const cartItems = useSelector((state) => state.cart.items); // No type annotation here
+  const cartItems = useSelector((state) => state.cart.items); 
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (item) => {
-    dispatch(removeFromCart(item.id));
+    dispatch(removeFromCart(item));
   };
 
   const handleIncrementQuantity = (item) => {
-    dispatch(incrementQuantity(item.id));
+    dispatch(incrementQuantity(item));
   };
 
   const handleDecrementQuantity = (item) => {
-    dispatch(decrementQuantity(item.id));
+    dispatch(decrementQuantity(item));
   };
 
   const handleOrder = () => {
@@ -35,7 +34,7 @@ const CartScreen = () => {
       <View style={styles.details}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.info}>Size: {item.size}</Text>
-        <Text style={styles.info}>Status: {item.status}</Text>
+        <Text style={styles.info}>Status: {item.hot === 'yes' ? 'Hot' : 'Cold'}</Text>
         <TouchableOpacity onPress={() => handleRemoveFromCart(item)} style={styles.removeButton}>
           <Text style={styles.removeButtonText}>Remove</Text>
         </TouchableOpacity>
@@ -63,7 +62,7 @@ const CartScreen = () => {
       <FlatList
         data={cartItems}
         renderItem={renderCartItem}
-        keyExtractor={(item) => `${item.id}-${item.size}-${item.status}`}
+        keyExtractor={(item) => `${item.id}-${item.size}-${item.hot}`}
         contentContainerStyle={styles.cartList}
         ListEmptyComponent={<Text style={styles.emptyText}>Your cart is empty</Text>}
       />
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   removeButton: {
-    backgroundColor: '#4E8D7C',
+    backgroundColor: 'green',
     borderRadius: 5,
     padding: 5,
     alignItems: 'center',
@@ -147,12 +146,12 @@ const styles = StyleSheet.create({
   TextPrice: {
     textAlign: 'center',
     fontSize: 20,
-    marginTop: 30,
-    marginLeft: 20,
+   
+    marginLeft: 9,
   },
   ButtonContainer: {
     padding: 10,
-    backgroundColor: "#4E8D7C",
+    backgroundColor: "green",
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",

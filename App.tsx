@@ -13,6 +13,7 @@ import ITCCempakaMasPage from './src/Screens/ITCCempakaMasPage';
 import MallOfIndonesiaPage from './src/Screens/MallOfIndonesiaPage';
 import MallArthaGadingPage from './src/Screens/MallArthaGadingPage';
 import CartScreen from './src/Screens/CartScreen';
+import PaymentScreen from './src/Screens/PaymentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ const MyHomeStack = () => (
     <Stack.Screen name="MallOfIndonesia" component={MallOfIndonesiaPage} />
     <Stack.Screen name="MallArthaGading" component={MallArthaGadingPage} />
     <Stack.Screen name="ITCCempakaMas" component={ITCCempakaMasPage} />
+    <Stack.Screen name="CHECKTOTALPRODUCTDETAIL" component={PaymentScreen} />
   </Stack.Navigator>
 );
 

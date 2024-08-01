@@ -39,7 +39,7 @@ const StoreHomeScreen = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Header />
+            <Header isHome={true} />
             <View style={styles.searchContainer}>
                 <View style={styles.searchInput}>
                     <AntDesign name={"search1"} size={30} color={"black"} />

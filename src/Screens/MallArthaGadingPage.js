@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-nativ
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems } from '../redux/mallSlice';
 import Header from '../components/Header';
-import Feather from 'react-native-vector-icons/Feather';
 import ProductConponent from '../components/ProductConponent';
 
 const OderScreen = () => {
@@ -48,12 +47,7 @@ const OderScreen = () => {
     return (
         <View style={styles.container}>
             <Header />
-            <View style={styles.headerContainer}>
-                <View style={styles.mapContainer}>
-                    <Feather name="map-pin" size={23} color="black" />
-                    <Text style={styles.textStore}>Mall Of Indonesia</Text>
-                </View>
-            </View>
+           
 
             <FlatList
                 ListFooterComponent={
@@ -108,25 +102,6 @@ const OderScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    headerContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderWidth: 1,
-        padding: 10,
-    },
-    mapContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    textStore: {
-        fontSize: 24,
-        color: 'black',
-        marginLeft: 8,
-        fontWeight: '700',
     },
     textCategory: {
         fontSize: 24,

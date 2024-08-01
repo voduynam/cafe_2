@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native'; // Import navigation hook
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/cartSlice'; 
 
-const OrderDetailsScreen = ({ route }) => {
+
+
+const OrderDetailsScreen = ({ route, navigation }) => {
   const { item } = route.params;
   const [selectedSize, setSelectedSize] = useState("L");
   const [selectedAvailable, setSelectedAvailable] = useState("yes");
-  const navigation = useNavigation(); // Hook to get navigation object
+  const dispatch = useDispatch(); 
 
   const sizes = [
     { size: 'S', label: 'Small' },
@@ -29,14 +32,15 @@ const OrderDetailsScreen = ({ route }) => {
   };
 
   const handleAddToCart = () => {
-    // Navigate to the cart screen and pass the selected item details
-    navigation.navigate('CARTSCREEN', {
-      item: {
-        ...item,
-        size: selectedSize,
-        hot: selectedAvailable
-      }
-    });
+    const cartItem = {
+      ...item,
+      size: selectedSize,
+      hot: selectedAvailable,
+      quantity: 1,
+      totalPrice: item.price,
+    };
+    dispatch(addToCart(cartItem)); 
+    navigation.navigate('CARTSCREEN');
   };
 
   return (
