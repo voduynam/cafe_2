@@ -15,6 +15,7 @@ import MallArthaGadingPage from './src/Screens/MallArthaGadingPage';
 import CartScreen from './src/Screens/CartScreen';
 import PaymentScreen from './src/Screens/PaymentScreen';
 
+
 const Stack = createNativeStackNavigator();
 
 const MyHomeStack = () => (

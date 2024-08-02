@@ -47,7 +47,7 @@ const Header = ({ isHome }) => {
                         < View style={styles.headerContainer2}>
                             <View style={styles.mapContainer}>
                                 <Feather name="map-pin" size={23} color="black" />
-                                <Text style={styles.textStore}>Mall Of Indonesia</Text>
+                                <Text style={styles.textStore}>Mall artha Gading</Text>
                             </View>
                         </View>
                     </View>

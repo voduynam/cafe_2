@@ -1,21 +1,25 @@
-import React, { useState } from 'react'
-import { Button, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import Header from '../components/Header'
-import { useSelector } from 'react-redux'
-import AntDesign from "react-native-vector-icons/AntDesign"
-import { setPaymentMethod } from '../slices/paymentSlice';
-
+import React, { useState } from 'react';
+import { Button, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Header from '../components/Header';
+import { useSelector, useDispatch } from 'react-redux';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { setPaymentMethod } from '../redux/paymentSlice';
 
 const PaymentScreen = () => {
-  const cartItems = useSelector((state) => state.cart.items)
-  const totalPrice = useSelector((state) => state.cart.totalPrice)
-  const [isModalVisible, setModalVisible] = useState(false)
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const selectedPaymentMethod = useSelector((state) => state.payment.selectedPaymentMethod);
+  const dispatch = useDispatch();
+  const [isModalVisible, setModalVisible] = useState(false);
 
+  const handlePaymentMethodChange = (method) => {
+    dispatch(setPaymentMethod(method));
+    setModalVisible(false);
+  };
 
   const renderItemOrder = ({ item, index }) => (
-
-    <View style={styles.listOrder} >
-      <View style={styles.containertitle} >
+    <View style={styles.listOrder}>
+      <View style={styles.containertitle}>
         <View style={styles.numberIndexContainer}>
           <Text style={styles.serialNumber}>{index + 1}</Text>
         </View>
@@ -26,8 +30,8 @@ const PaymentScreen = () => {
       </View>
 
       <View style={styles.textDetaills}>
-        <Text style={styles.info}>Size: {item.size === "S" ? "Small" : item.size === "M" ? "Medium" : item.size === "L" ? "Big" : ''}</Text>
-        <Text style={styles.info}>{item.size === "S" ? "+0" : item.size === "M" ? "+2" : item.size === "L" ? "+5" : ''}</Text>
+        <Text style={styles.info}>Size: {item.size === 'S' ? 'Small' : item.size === 'M' ? 'Medium' : item.size === 'L' ? 'Big' : ''}</Text>
+        <Text style={styles.info}>{item.size === 'S' ? '+0' : item.size === 'M' ? '+2' : item.size === 'L' ? '+5' : ''}</Text>
       </View>
 
       <View style={styles.textDetaills}>
@@ -37,12 +41,18 @@ const PaymentScreen = () => {
       <View style={styles.textDetaills}>
         <Text style={styles.info}>Quantity:</Text>
         <Text style={styles.info}>{item.quantity}</Text>
-
       </View>
-      <View style={{ height: 1, backgroundColor: "black", marginTop: 5 }} />
-
+      <View style={{ height: 1, backgroundColor: 'black', marginTop: 5 }} />
     </View>
-  )
+  );
+
+  const paymentImages = {
+    OVO: require('../asset/Ovo.png'),
+    LinkAja: require('../asset/LinkAja.png'),
+    Dana: require('../asset/Dana.png'),
+    Flip: require('../asset/Flip.png'),
+    Cash: require('../asset/Cash.png')
+  };
 
   return (
     <View style={styles.container}>
@@ -55,24 +65,21 @@ const PaymentScreen = () => {
           keyExtractor={(item) => `${item.id}-${item.size}-${item.hot}-${item.quantity}-${item.title}`}
           contentContainerStyle={styles.cartList}
           ListEmptyComponent={<Text style={styles.emptyText}>Your cart is empty</Text>}
-          ListFooterComponent={
-            <View>
-              <View style={styles.containersubTotal}>
-                <Text style={styles.TextSub}>Subtotal:</Text>
-                <Text style={styles.TexttotalPrice}>{totalPrice}$</Text>
-              </View>
-
-            </View>
-          }
         />
+        <View>
+          <View style={styles.containersubTotal}>
+            <Text style={styles.TextSub}>Subtotal:</Text>
+            <Text style={styles.TexttotalPrice}>{totalPrice}$</Text>
+          </View>
+        </View>
         <View style={styles.contaienrPay}>
           <View style={styles.containerPAy}>
-            <Text style={styles.textPayMentMethod}>Payment Details : </Text>
-            <TouchableOpacity style={styles.paydefault} onPress={() => setModalVisible(true)} >
-              <Image source={require("../asset/Ovo.png")} style={styles.imgOvo} />
-              <Text style={styles.textPay}>OVO</Text>
-
+            <Text style={styles.textPayMentMethod}>Payment Details :</Text>
+            <TouchableOpacity style={styles.paydefault} onPress={() => setModalVisible(true)}>
+              <Image source={paymentImages[selectedPaymentMethod] || paymentImages['OVO']} style={styles.imgOvo} />
+              <Text style={styles.textPay}>{selectedPaymentMethod || 'OVO'}</Text>
             </TouchableOpacity>
+        
           </View>
           <Modal
             visible={isModalVisible}
@@ -83,52 +90,31 @@ const PaymentScreen = () => {
             <View style={styles.modalContainer}>
               <View style={styles.modalContent}>
                 <View style={styles.headerPaymenMethod}>
-                  <TouchableOpacity onPress={() => setModalVisible(false)} >
+                  <TouchableOpacity onPress={() => setModalVisible(false)}>
                     <AntDesign name="close" color="black" size={32} />
                   </TouchableOpacity>
-
                   <Text style={styles.modalTitle}>Payment Method</Text>
                 </View>
-                <View style={{ height: 1, backgroundColor: "black" }} />
-                <TouchableOpacity style={styles.modalOption} >
-                  <Image source={require("../asset/Ovo.png")} style={styles.imgOvo} />
-                  <Text style={styles.textPay}>OVO</Text>
-
-                </TouchableOpacity>
-                <View style={{ height: 1, backgroundColor: "black" }} />
-                <TouchableOpacity style={styles.modalOption}>
-                  <Image source={require("../asset/LinkAja.png")} style={styles.imgOvo} />
-                  <Text style={styles.textPay}>LinkAja</Text>
-
-                </TouchableOpacity>
-                <View style={{ height: 1, backgroundColor: "black" }} />
-                <TouchableOpacity style={styles.modalOption} >
-                  <Image source={require("../asset/Dana.png")} style={styles.imgOvo} />
-                  <Text style={styles.textPay}>Dana</Text>
-
-                </TouchableOpacity>
-                <View style={{ height: 1, backgroundColor: "black" }} />
-                <TouchableOpacity style={styles.modalOption} >
-                  <Image source={require("../asset/Flip.png")} style={styles.imgOvo} />
-                  <Text style={styles.textPay}>Flip</Text>
-
-                </TouchableOpacity>
-                <View style={{ height: 1, backgroundColor: "black" }} />
-                <TouchableOpacity style={styles.modalOption} >
-                  <Image source={require("../asset/Cash.png")} style={styles.imgOvo} />
-                  <Text style={styles.textPay}>Cash</Text>
-                </TouchableOpacity>
-
-
+                <View style={{ height: 1, backgroundColor: 'black' }} />
+                {Object.keys(paymentImages).map((method, index) => (
+                  <View key={method}>
+                    <TouchableOpacity style={styles.modalOption} onPress={() => handlePaymentMethodChange(method)}>
+                      <Image source={paymentImages[method]} style={styles.imgOvo} />
+                      <Text style={styles.textPay}>{method}</Text>
+                    </TouchableOpacity>
+                    {index < Object.keys(paymentImages).length - 1 && (
+                      <View style={{ height: 1, backgroundColor: 'black' }} />
+                    )}
+                  </View>
+                ))}
               </View>
             </View>
           </Modal>
         </View>
       </View>
-          
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -146,21 +132,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDDDDD',
     marginVertical: 10,
     height: 500
-
   },
   titleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     flex: 1,
     marginHorizontal: 10
-
   },
   textDetaills: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginLeft: 52,
     marginHorizontal: 10
-
   },
   numberIndexContainer: {
     backgroundColor: "#808080",
@@ -212,14 +195,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
-   
+    marginTop: 30
   },
   TextSub: {
     fontSize: 18,
     color: "black",
     marginLeft: 16,
-
   },
   textPayMentMethod: {
     fontFamily: "Roboto",
@@ -229,19 +210,14 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   contaienrPay: {
-    
     backgroundColor: 'white',
-    marginTop:50
-
+    marginTop: 50
   },
   modalContainer: {
-
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-
-
   },
   imgOvo: {
     height: 48,
@@ -260,7 +236,6 @@ const styles = StyleSheet.create({
     height: 308,
     borderRadius: 10,
     shadowColor: 20
-
   },
   modalTitle: {
     textAlign: "center",
@@ -268,33 +243,28 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "600",
     flex: 1
-
   },
   modalOption: {
     flexDirection: "row",
     height: 50,
-    alignItems: "center"
-
-
+    alignItems: "center",
+    
   },
   headerPaymenMethod: {
     height: 50,
     flexDirection: "row",
     alignItems: "center",
-
   },
- 
-  containerPAy:{
-    marginTop:20
+  containerPAy: {
+    marginTop: 20
   },
-  paydefault:{
+  paydefault: {
     flexDirection: "row",
     height: 50,
     alignItems: "center",
-    marginLeft:20,
-    marginVertical:20
+    marginLeft: 20,
+    marginVertical: 20
   }
+});
 
-})
-
-export default PaymentScreen
+export default PaymentScreen;

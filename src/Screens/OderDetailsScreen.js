@@ -36,7 +36,7 @@ const OrderDetailsScreen = ({ route, navigation }) => {
       quantity: 1,
       totalPrice: item.price,
     };
-    dispatch(addToCart(cartItem)); // Dispatch addToCart action
+    dispatch(addToCart(cartItem)); 
     navigation.navigate('CARTSCREEN');
   };
 

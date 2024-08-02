@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Async thunk to fetch drinks
+
 export const fetchItems = createAsyncThunk(
   'items/fetchItems',
   async (_, { rejectWithValue }) => {
