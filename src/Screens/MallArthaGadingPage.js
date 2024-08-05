@@ -47,7 +47,7 @@ const OderScreen = () => {
     return (
         <View style={styles.container}>
             <Header />
-           
+
 
             <FlatList
                 ListFooterComponent={

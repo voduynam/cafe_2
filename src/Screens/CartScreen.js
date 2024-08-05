@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
     marginBottom: 5,
+    width:150
   },
   info: {
     fontFamily: 'Poppins',

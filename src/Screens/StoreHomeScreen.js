@@ -1,33 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, FlatList, Image, TouchableOpacity } from 'react-native';
 import Header from '../components/Header';
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import data from '../data/mall.json'; 
-import { useDispatch } from 'react-redux';
-import  {selectMall,clearMall} from "../redux/handleChooseMall"
- 
-const StoreHomeScreen = ({navigation}) => {
-    const dispatch=useDispatch();
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMall, setSearchTerm, setMalls, selectFilteredMalls } from '../redux/handleChooseMall';
 
-    const handleMallSelectionScreen =(mall)=>{
+const StoreHomeScreen = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const filteredMalls = useSelector(selectFilteredMalls);
+
+    useEffect(() => {
+        dispatch(setMalls(data));
+    }, [dispatch]);
+
+    const handleMallSelectionScreen = (mall) => {
         dispatch(selectMall(mall));
         navigation.navigate(mall.replace(/\s+/g, ''));
+    };
 
-    }
-
+    const handleSearch = (text) => {
+        dispatch(setSearchTerm(text));
+    };
 
     const renderItem = ({ item }) => (
-
-
-        <TouchableOpacity style={styles.itemContainer}
-            onPress={()=>{
-                handleMallSelectionScreen(item.name)
-
-
-            }}
-
-        >
+        <TouchableOpacity style={styles.itemContainer} onPress={() => handleMallSelectionScreen(item.name)}>
             <Image source={{ uri: item.imageUrl }} style={styles.itemImage} />
             <View style={styles.itemDetails}>
                 <Text style={styles.itemName}>{item.name}</Text>
@@ -46,16 +44,16 @@ const StoreHomeScreen = ({navigation}) => {
                     <TextInput
                         placeholder='Search'
                         style={styles.textInput}
+                        onChangeText={handleSearch}
                     />
                 </View>
                 <Entypo name={"map"} size={37} color={"black"} />
             </View>
             <View style={{ height: 3, backgroundColor: 'black' }} />
             <FlatList
-                data={data}
+                data={filteredMalls}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id.toString()}
-          
             />
         </View>
     );
@@ -86,12 +84,9 @@ const styles = StyleSheet.create({
         flex: 1,
         marginLeft: 10,
     },
-  
     itemContainer: {
-      
         alignItems: 'center',
         marginVertical: 10,
-      
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 10,
@@ -100,7 +95,6 @@ const styles = StyleSheet.create({
     itemImage: {
         width: 400,
         height: 300,
-  
     },
     itemDetails: {
         flex: 1,

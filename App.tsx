@@ -15,11 +15,13 @@ import MallArthaGadingPage from './src/Screens/MallArthaGadingPage';
 import CartScreen from './src/Screens/CartScreen';
 import PaymentScreen from './src/Screens/PaymentScreen';
 
+import Test from './src/Screens/googlemap/Test';
+
 
 const Stack = createNativeStackNavigator();
 
 const MyHomeStack = () => (
-  <Stack.Navigator initialRouteName="STOREHOMESCREEN" screenOptions={{ headerShown: false }}>
+  <Stack.Navigator initialRouteName="HOMESCREEN" screenOptions={{ headerShown: false }}>
     <Stack.Screen name="SIGNIN" component={SignInScreen} />
     <Stack.Screen name="HOMESCREEN" component={StoreHomeScreen} />
     <Stack.Screen name="STOREHOMESCREEN" component={StoreHomeScreen} />
@@ -30,6 +32,7 @@ const MyHomeStack = () => (
     <Stack.Screen name="MallArthaGading" component={MallArthaGadingPage} />
     <Stack.Screen name="ITCCempakaMas" component={ITCCempakaMasPage} />
     <Stack.Screen name="CHECKTOTALPRODUCTDETAIL" component={PaymentScreen} />
+    <Stack.Screen name="GOOGLEMAP" component={Test} />
   </Stack.Navigator>
 );
 
